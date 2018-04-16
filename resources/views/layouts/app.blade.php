@@ -87,7 +87,7 @@
 
                         </li>
                         <li class="list-group-item">
-                            <a href="/post/create"> Create a new post</a>
+                            <a href="{{ route('post.create') }}"> Create a new post</a>
 
                         </li>
                     </ul>
