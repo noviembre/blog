@@ -80,18 +80,20 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="/home"> Home</a>
+                @if(Auth::check())
+                    <div class="col-lg-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="/home"> Home</a>
 
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{{ route('post.create') }}"> Create a new post</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('post.create') }}"> Create a new post</a>
 
-                        </li>
-                    </ul>
-                </div>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
                 <div class="col-lg-8">
                     @yield('content')
                 </div>
