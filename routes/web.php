@@ -39,6 +39,13 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth'], function (){
         'as' => 'post.store'
     ]);
 
+    // mandar a dormir un post
+    Route::get('/post/delete/{id}', [
+
+        'uses' => 'PostsController@destroy',
+        'as' => 'post.delete'
+    ]);
+
     //listar post
     Route::get('/posts',[
 

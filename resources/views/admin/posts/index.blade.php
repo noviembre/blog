@@ -21,7 +21,9 @@
                         <td>{{ $post->title }}</td>
 
                         <td>Edit</td>
-                        <td>Delete</td>
+                        <td>
+                            <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger">Trash</a>
+                        </td>
 
 
                     </tr>
