@@ -94,6 +94,11 @@
                             </li>
 
                             <li class="list-group-item">
+                                <a href="{{ route('posts') }}">All Posts</a>
+
+                            </li>
+
+                            <li class="list-group-item">
                                 <a href="{{ route('category.create') }}"> Create New Category</a>
 
                             </li>
@@ -120,9 +125,16 @@
     <script>
         @if(Session::has('success'))
 
-            toastr.success("{{ Session::get('success') }}")
+        toastr.success("{{ Session::get('success') }}")
 
         @endif
+
+        @if(Session::has('info'))
+
+        toastr.info("{{ Session::get('info') }}")
+
+        @endif
+
     </script>
 </body>
 </html>

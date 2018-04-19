@@ -17,7 +17,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        //Devolver vista (posts/index) con los datos de la tabla post (solo aquellos q sean null en Delete_at)
+        return view('admin.posts.index')->with('posts',Post::all());
     }
 
     /**
@@ -27,8 +28,17 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
+
+        if ($categories->count()==0)
+        {
+            Session::flash('info','You must have some categories before attempting to create a post');
+
+            return redirect()->back();
+
+        }
         #dentro de la funcion "with" estamos pasando todas las categorias
-        return view('admin.posts.create')->with('categories', Category::all());
+        return view('admin.posts.create')->with('categories', $categories);
     }
 
     /**
@@ -44,7 +54,8 @@ class PostsController extends Controller
            'title' => 'required',
            'featured' => 'required|image',
            'contenido' => 'required',
-           'category_id' => 'required'
+           'category_id' => 'required',
+
        ]);
 
        $featured = $request->featured;
@@ -57,13 +68,13 @@ class PostsController extends Controller
            'title' => $request->title,
            'contenido' => $request->contenido,
            'featured' => 'upload/posts/' . $featured_new_name,
-           'category_id' => $request->category_id
-
+           'category_id' => $request->category_id,
+            'slug' => str_slug($request->title)
 
        ]);
 
         Session::flash('success','Post created successfully');
-        dd($request->all());
+        return redirect()->back();
     }
 
     /**
