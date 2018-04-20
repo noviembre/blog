@@ -12,7 +12,8 @@
                 <th>Image</th>
                 <th>title</th>
                 <th>Edit</th>
-                <th>Trash</th>
+                <th>restore</th>
+                <th>Destroy</th>
                 </thead>
                 <tbody>
                 @foreach($posts as $post)
@@ -22,7 +23,10 @@
 
                         <td>Edit</td>
                         <td>
-                            <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger">Trash</a>
+                            <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-success btn-xs">restore</a>
+                        </td>
+                        <td>
+                            <a href="{{ route('posts.kill', ['id' => $post->id]) }}" class="btn btn-danger btn-xs">Kill</a>
                         </td>
 
 
