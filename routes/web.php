@@ -75,7 +75,27 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth'], function (){
 
     ]);
 
-    //para las categorias
+    //editar un post
+    Route::get('/posts/edit/{id}',[
+
+        'uses' => 'PostsController@edit',
+        'as' => 'post.edit'
+
+    ]);
+
+    //actualzar un post
+    Route::post('/posts/update/{id}',[
+
+        'uses' => 'PostsController@update',
+        'as' => 'post.update'
+
+    ]);
+
+
+
+
+    //================= categorias
+    // Create categoria
     Route::get('/category/create',[
 
         'uses' => 'CategoriesController@create',

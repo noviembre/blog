@@ -96,7 +96,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Encontrar post que no estan dormidos
+        $post = Post::find($id);
+
+        return view('admin.posts.edit')->with('post', $post)->with('categories', Category::all());
     }
 
     /**
@@ -108,7 +111,43 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //validar
+        $this->validate($request,[
+
+            'title' => 'required',
+            'contenido' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        //encotnrar post
+        $post = Post::find($id);
+
+        //si tiene archivo
+
+        if($request->hasFile('featured'))
+        {
+            $featured = $request->featured;
+
+            $featured_new_name = time() . $featured->getClientOriginalName();
+
+            $featured->move('uploads/posts',$featured_new_name);
+
+            $post->featured = 'uploads/posts/'.$featured_new_name;
+
+        }
+
+        $post->title = $request->title;
+        $post->contenido = $request->contenido;
+        $post->category_id = $request->category_id;
+
+        $post->save();
+
+        Session::flash('success','Post was Updated successfully');
+
+        return redirect()->route('posts');
+
+
     }
 
     /**
