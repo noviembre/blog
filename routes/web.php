@@ -136,5 +136,57 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth'], function (){
         'as' => 'category.store'
 
     ]);
+
+    //================= TAGS ================
+
+    // listar tags
+    Route::get('/tags',[
+
+        'uses' => 'TagsController@index',
+        'as' => 'tags'
+
+    ]);
+
+    //Crear Tag
+    Route::get('/tag/create',[
+
+        'uses' => 'TagsController@create',
+        'as' => 'tag.create'
+
+    ]);
+
+    //
+    Route::post('/tag/store',[
+
+        'uses' => 'TagsController@store',
+        'as' => 'tag.store'
+
+    ]);
+
+    //editar tag
+    Route::get('/tag/edit/{id}',[
+
+        'uses' => 'TagsController@edit',
+        'as' => 'tag.edit'
+
+    ]);
+
+    //Actualizar Tag
+    Route::post('/tag/update/{id}',[
+
+        'uses' => 'TagsController@update',
+        'as' => 'tag.update'
+
+    ]);
+
+    //editar tag
+    Route::get('/tag/delete/{id}',[
+
+        'uses' => 'TagsController@destroy',
+        'as' => 'tag.delete'
+
+    ]);
+
+
 });
 
