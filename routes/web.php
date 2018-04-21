@@ -46,17 +46,25 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth'], function (){
         'as' => 'post.delete'
     ]);
 
-    // revivir un post
+    // mostrar post dormidos
     Route::get('/posts/trashed', [
 
         'uses' => 'PostsController@trashed',
         'as' => 'posts.trashed'
     ]);
 
+    //eliminar un post
     Route::get('/posts/kill/{id}', [
 
         'uses' => 'PostsController@kill',
         'as' => 'posts.kill'
+    ]);
+
+    //restaurar un post
+    Route::get('/posts/restore/{id}', [
+
+        'uses' => 'PostsController@restore',
+        'as' => 'posts.restore'
     ]);
 
     //listar post
