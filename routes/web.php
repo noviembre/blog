@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('/test', function (){
+
+    // devolver los post cuya cateogira sea = 2
+    return App\Post::find(2)->category;
+
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });

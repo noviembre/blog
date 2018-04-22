@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use Session;
 use App\Post;
 use App\Category;
@@ -38,7 +39,8 @@ class PostsController extends Controller
 
         }
         #dentro de la funcion "with" estamos pasando todas las categorias
-        return view('admin.posts.create')->with('categories', $categories);
+        return view('admin.posts.create')->with('categories', $categories)
+                                            ->with('tags',Tag::all());
     }
 
     /**
@@ -55,6 +57,7 @@ class PostsController extends Controller
            'featured' => 'required|image',
            'contenido' => 'required',
            'category_id' => 'required',
+           'tags' => 'required'
 
        ]);
 
@@ -72,6 +75,11 @@ class PostsController extends Controller
             'slug' => str_slug($request->title)
 
        ]);
+        // $post = este post que acabamos decrear
+        // ->tags() = quiero acceder a la relacionde los tags
+        //->attach = accedemos al metodo attach
+        // attach($request->tags) = le pasamos un array de IDs q queremos asociar con este post
+       $post->tags()->attach($request->tags);
 
         Session::flash('success','Post created successfully');
         return redirect()->back();
