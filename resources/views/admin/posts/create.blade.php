@@ -50,7 +50,7 @@
 
                 @foreach($tags as $tag)
                 <div class="checkbox">
-                    <label for="">
+                    <label>
                         <input value="{{ $tag->id }}" name="tags[]" type="checkbox">{{ $tag->tag }}
                     </label>
                 </div>
