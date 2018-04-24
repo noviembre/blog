@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
-class UsersController extends Controller
+class ProfilesController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index')->with('users', User::all());
+        return view('admin.users.profile')->with('user', Auth::user());
     }
 
     /**
@@ -33,7 +24,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        //
     }
 
     /**
@@ -44,32 +35,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            'name' => 'required',
-            'email' => 'required|email'
-
-        ]);
-
-        $user = User::create([
-
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt('password')
-
-        ]);
-
-        $profile = Profile::create([
-
-            'user_id' => $user->id,
-            'avatar' => 'uploads/avatars/avatar.jpg'
-        ]);
-
-        Session::flash('success','User added Successfully');
-
-        return redirect()->route('users');
-
-
+        //
     }
 
     /**
@@ -101,7 +67,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
@@ -115,29 +81,5 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function admin($id)
-    {
-        $user = User::find($id);
-        $user->admin = 1;
-
-        $user->save();
-
-        Session::flash('success','Successfully changed user permissions');
-
-        return redirect()->back();
-    }
-
-    public function not_admin($id)
-    {
-        $user = User::find($id);
-        $user->admin = 0;
-
-        $user->save();
-
-        Session::flash('success','Successfully changed user permissions');
-
-        return redirect()->back();
     }
 }

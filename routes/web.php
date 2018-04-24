@@ -227,13 +227,30 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth'], function (){
         'uses' => 'UsersController@admin',
         'as' => 'user.admin'
 
-    ]);
+    ])->middleware('admin');
 
     //Retirar permisos de Admin
     Route::get('/user/not-admin/{id}',[
 
         'uses' => 'UsersController@not_admin',
         'as' => 'user.not.admin'
+
+    ]);
+
+    //-=============== PROFILES ===========
+    //profile listar
+    Route::get('/user/profile',[
+
+        'uses' => 'ProfilesController@index',
+        'as' => 'user.profile'
+
+    ]);
+
+    //profile editar
+    Route::post('/user/profile/update',[
+
+        'uses' => 'ProfilesController@update',
+        'as' => 'user.profile.update'
 
     ]);
 
