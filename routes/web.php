@@ -18,10 +18,12 @@ Route::get('/test', function (){
 
 });
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// index
+Route::get('/', [
+    // 01 frontend.
+   'uses' => 'FrontEndController@index',
+    'as' => 'index'
+]);
 
 Auth::routes();
 
