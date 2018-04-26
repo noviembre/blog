@@ -33,7 +33,11 @@
                                     <a href="{{ route('user.admin',['id'=> $user->id]) }}" class="btn btn-success btn-xs">Make Admin</a>
                                 @endif
                             </td>
-                            <td>Delete</td>
+                            <td>
+                                @if(Auth::id() !== $user->id )
+                                    <a href="{{ route('user.delete',['id'=> $user->id]) }}" class="btn btn-danger btn-xs">Delete</a>
+                                @endif
+                            </td>
 
 
 

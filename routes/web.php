@@ -270,7 +270,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth'], function (){
 
     ]);
 
-    //editar user
+    //delete user
     Route::get('/user/delete/{id}',[
 
         'uses' => 'UsersController@destroy',
