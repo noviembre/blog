@@ -31,16 +31,18 @@ class PostsController extends Controller
     {
         $categories = Category::all();
 
-        if ($categories->count()==0)
+        $tags = Tag::all();
+
+        if ($categories->count()==0 || $tags->count() == 0)
         {
-            Session::flash('info','You must have some categories before attempting to create a post');
+            Session::flash('info','You must have some categories and Tags before attempting to create a post');
 
             return redirect()->back();
 
         }
         #dentro de la funcion "with" estamos pasando todas las categorias
         return view('admin.posts.create')->with('categories', $categories)
-                                            ->with('tags',Tag::all());
+                                            ->with('tags',$tags);
     }
 
     /**

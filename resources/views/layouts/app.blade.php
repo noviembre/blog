@@ -14,6 +14,8 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
+    @yield('styles')
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -166,5 +168,7 @@
         @endif
 
     </script>
+
+@yield('scripts')
 </body>
 </html>

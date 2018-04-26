@@ -73,3 +73,26 @@
     </div>
 
     @stop
+
+
+@section('styles')
+
+    <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
+
+@stop
+
+
+@section('scripts')
+    <!-- Scripts para Editor de texto  -->
+    <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#contenido').summernote();
+
+        });
+
+    </script>
+
+@stop
