@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{ $title }}</title>
@@ -70,7 +70,7 @@
                         <div class="post__content-info">
 
                             <h2 class="post__title entry-title text-center">
-                                <a href="15_blog_details.html">{{ $first_post->title}}</a>
+                                <a href="{{ route('post.single', ['slug' => $first_post->slug ]) }}">{{ $first_post->title}}</a>
                             </h2>
 
                             <div class="post-additional-info">
@@ -125,7 +125,7 @@
                         <div class="post__content-info">
 
                             <h2 class="post__title entry-title text-center">
-                                <a href="15_blog_details.html">{{ $second_post->title}}</a>
+                                <a href="{{ route('post.single', ['slug' => $second_post->slug ]) }}">{{ $second_post->title}}</a>
                             </h2>
 
                             <div class="post-additional-info">
