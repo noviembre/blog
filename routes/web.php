@@ -39,6 +39,12 @@ Route::get('/category/{id}',[
 
 ]);
 
+Route::get('/tag/{id}',[
+
+    'uses' => 'FrontEndController@tag',
+    'as' => 'tag.single'
+
+]);
 
 Auth::routes();
 

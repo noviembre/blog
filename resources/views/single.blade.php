@@ -205,8 +205,9 @@
 
                             <div class="tags-wrap">
                             @foreach($tags as $tag)
-                                <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
-                            @endforeach
+                                <a href="{{ route('tag.single', ['id' => $tag->id ]) }}" class="w-tags-item">{{ $tag->tag }}</a>
+
+                                @endforeach
 
                             </div>
                         </div>
